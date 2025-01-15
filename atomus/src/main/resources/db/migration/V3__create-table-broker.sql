@@ -1,0 +1,5 @@
+CREATE TABLE broker (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) UNIQUE,
+    cnpj VARCHAR(18) UNIQUE
+);
