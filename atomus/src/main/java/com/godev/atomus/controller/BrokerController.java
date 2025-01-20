@@ -4,6 +4,7 @@ import com.godev.atomus.entity.broker.Broker;
 import com.godev.atomus.entity.broker.BrokerData;
 import com.godev.atomus.entity.broker.BrokerEditData;
 import com.godev.atomus.entity.broker.BrokerRegisterData;
+import com.godev.atomus.entity.product.Product;
 import com.godev.atomus.service.BrokerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/corretora")
@@ -31,6 +34,11 @@ public class BrokerController {
     @GetMapping("/{brokerId}")
     public ResponseEntity detalhar(@PathVariable Long brokerId) {
         return ResponseEntity.ok(new BrokerData(brokerService.getReferenceById(brokerId)));
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<Broker>> listar() {
+        return ResponseEntity.ok(brokerService.findAll());
     }
 
     @PutMapping
